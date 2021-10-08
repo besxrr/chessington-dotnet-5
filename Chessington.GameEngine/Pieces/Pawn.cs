@@ -10,12 +10,9 @@ namespace Chessington.GameEngine.Pieces
         public Pawn(Player player) 
             : base(player) { }
 
-            private bool AlreadyMoved = false;
-
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
             var locationOfPiece = board.FindPiece(this);
-            var PawnMove = 0;
             if (Player == Player.White)
             {
                 yield return Square.At(locationOfPiece.Row-1, locationOfPiece.Col);
@@ -24,7 +21,7 @@ namespace Chessington.GameEngine.Pieces
                     yield return Square.At(locationOfPiece.Row-2,locationOfPiece.Col);
                 }
             }
-
+                
             if (Player == Player.Black)
             {
                 yield return Square.At(locationOfPiece.Row+1, locationOfPiece.Col);
