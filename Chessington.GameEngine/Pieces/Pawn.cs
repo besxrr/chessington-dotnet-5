@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.PortableExecutable;
+using System.Text;
 
 namespace Chessington.GameEngine.Pieces
 {
@@ -9,22 +10,30 @@ namespace Chessington.GameEngine.Pieces
         public Pawn(Player player) 
             : base(player) { }
 
+            private bool AlreadyMoved = false;
+
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
-
-            var x = 1;
+            var locationOfPiece = board.FindPiece(this);
+            var PawnMove = 0;
             if (Player == Player.White)
             {
-                x = -1;
+                yield return Square.At(locationOfPiece.Row-1, locationOfPiece.Col);
+                if (!hasMoved)
+                {
+                    yield return Square.At(locationOfPiece.Row-2,locationOfPiece.Col);
+                }
+            }
+
+            if (Player == Player.Black)
+            {
+                yield return Square.At(locationOfPiece.Row+1, locationOfPiece.Col);
+                if (!hasMoved)
+                {
+                    yield return Square.At(locationOfPiece.Row+2,locationOfPiece.Col);
+                }
             }
             
-            var locationOfPiece = board.FindPiece(this);
-            
-            var moves = new List<Square>()
-            {
-                Square.At(locationOfPiece.Row + x, locationOfPiece.Col)
-            };
-            return moves;
         }
     }
 }
