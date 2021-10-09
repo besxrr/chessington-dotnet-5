@@ -15,7 +15,6 @@ namespace Chessington.GameEngine.Pieces
             var locationOfPiece = board.FindPiece(this);
 
             var currentPlayerColour = Player.Equals(Player.White) ? Player.White : Player.Black;
-
             var first = Square.At(locationOfPiece.Row + 2, locationOfPiece.Col +1 );
             var second = Square.At(locationOfPiece.Row + 1, locationOfPiece.Col +2 );
             var third = Square.At(locationOfPiece.Row -1, locationOfPiece.Col +2 );
@@ -25,35 +24,7 @@ namespace Chessington.GameEngine.Pieces
             var seventh = Square.At(locationOfPiece.Row +1 , locationOfPiece.Col -2 );
             var eighth = Square.At(locationOfPiece.Row +2 , locationOfPiece.Col -1 );
             
-            // Square.At(locationOfPiece.Row + 2, locationOfPiece.Col + 1 )
-            // Square.At(locationOfPiece.Row + 2, locationOfPiece.Col - 1 )
-            // Square.At(locationOfPiece.Row - 2, locationOfPiece.Col + 1 )
-            // Square.At(locationOfPiece.Row - 2, locationOfPiece.Col - 1 )
-            //
-            // Square.At(locationOfPiece.Row + 1, locationOfPiece.Col + 2 )
-            // Square.At(locationOfPiece.Row + 1, locationOfPiece.Col - 2 )
-            // Square.At(locationOfPiece.Row - 1, locationOfPiece.Col + 2 )
-            // Square.At(locationOfPiece.Row - 1, locationOfPiece.Col - 2 )
-            
-            //
-            // if (board.GetPiece(moveOnePosition) == null)
-            // {
-            //     squares.Add(moveOnePosition);
-            //
-            //     if (!hasMoved && board.GetPiece(moveTwoPosition) == null)
-            //     {
-            //         squares.Add(moveTwoPosition);
-            //     }
-            // }
-            //
-            // if(board.GetPiece(moveDiagonalLeft) != null && !board.GetPiece(moveDiagonalLeft).Player.Equals(currentPlayerColour)){
-            //     squares.Add(moveDiagonalLeft);
-            // }
-            //
-            // if(board.GetPiece(moveDiagonalRight) != null && !board.GetPiece(moveDiagonalRight).Player.Equals(currentPlayerColour)){
-            //     squares.Add(moveDiagonalRight);
-            // }
-            //
+            squares.RemoveAll(sameColourPiece => (board.GetPiece(sameColourPiece) != null && (board.GetPiece(sameColourPiece).Player == Player)));
             return squares;
         }
     }
