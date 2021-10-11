@@ -13,8 +13,7 @@ namespace Chessington.GameEngine.Pieces
             var squares = new List<Square>();
             
             var locationOfPiece = board.FindPiece(this);
-
-            var currentPlayerColour = Player.Equals(Player.White) ? Player.White : Player.Black;
+            
             var first = Square.At(locationOfPiece.Row + 2, locationOfPiece.Col +1 );
             var second = Square.At(locationOfPiece.Row + 1, locationOfPiece.Col +2 );
             var third = Square.At(locationOfPiece.Row -1, locationOfPiece.Col +2 );

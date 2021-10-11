@@ -146,12 +146,12 @@ namespace Chessington.GameEngine.Tests.Pieces
             var pawn = new Pawn(Player.White);
             var right = new Pawn(Player.Black);
             var left = new Pawn(Player.Black);
-            board.AddPiece(Square.At(3, 5), pawn);
-            board.AddPiece(Square.At(2, 6), left);
-            board.AddPiece(Square.At(4, 6), right);
+            board.AddPiece(Square.At(3, 4), pawn);
+            board.AddPiece(Square.At(2, 5), left);
+            board.AddPiece(Square.At(4, 5), right);
             var moves = pawn.GetAvailableMoves(board).ToList();
-            moves.Should().Contain(Square.At(2, 6));
-            moves.Should().Contain(Square.At(4, 6));
+            moves.Should().Contain(Square.At(2, 5));
+            moves.Should().Contain(Square.At(4, 5));
 
         }
     }

@@ -15,11 +15,8 @@ namespace Chessington.GameEngine.Pieces
             var squares = new List<Square>();
             
             var locationOfPiece = board.FindPiece(this);
-
-            var currentPlayerColour = Player.Equals(Player.White) ? Player.White : Player.Black;
             
             var direction = currentPlayerColour == Player.White ? -1 : 1;
-            
             
             var moveOnePosition = Square.At(locationOfPiece.Row + direction, locationOfPiece.Col);
             var moveTwoPosition = Square.At(locationOfPiece.Row + direction * 2, locationOfPiece.Col);
@@ -37,9 +34,9 @@ namespace Chessington.GameEngine.Pieces
                 }
             }
             
-            // if(board.GetPiece(moveDiagonalLeft) != null && !board.GetPiece(moveDiagonalLeft).Player.Equals(currentPlayerColour)){
-            //     squares.Add(moveDiagonalLeft);
-            // }
+            if(board.GetPiece(moveDiagonalLeft) != null && !board.GetPiece(moveDiagonalLeft).Player.Equals(currentPlayerColour)){
+                squares.Add(moveDiagonalLeft);
+            }
             
             if(board.GetPiece(moveDiagonalRight) != null && !board.GetPiece(moveDiagonalRight).Player.Equals(currentPlayerColour)){
                 squares.Add(moveDiagonalRight);
