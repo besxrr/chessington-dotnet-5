@@ -24,7 +24,6 @@ namespace Chessington.GameEngine.Pieces
                 squares.Add(moveOnePositionUp);
             }
             
-            
             if(!board.GetPiece(moveOnePositionDown).Player.Equals(currentPlayerColour)){
                 squares.Add(moveOnePositionDown);
             }

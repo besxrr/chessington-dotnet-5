@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Chessington.GameEngine.Pieces;
 
 namespace Chessington.GameEngine
@@ -82,6 +83,21 @@ namespace Chessington.GameEngine
         {
             var handler = CurrentPlayerChanged;
             handler?.Invoke(player);
+        }
+
+        public bool OutOfBounds(Square input)
+        {
+            if (input.Row is > 8 or < 1)
+            {
+                return true;
+            }
+
+            if (input.Col is > 8 or < 1)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -13,16 +13,20 @@ namespace Chessington.GameEngine.Pieces
             var squares = new List<Square>();
             
             var locationOfPiece = board.FindPiece(this);
-            
-            var first = Square.At(locationOfPiece.Row + 2, locationOfPiece.Col +1 );
-            var second = Square.At(locationOfPiece.Row + 1, locationOfPiece.Col +2 );
-            var third = Square.At(locationOfPiece.Row -1, locationOfPiece.Col +2 );
-            var forth = Square.At(locationOfPiece.Row - 2, locationOfPiece.Col +1 );
-            var fifth = Square.At(locationOfPiece.Row - 2, locationOfPiece.Col -1 );
-            var sixth = Square.At(locationOfPiece.Row -1 , locationOfPiece.Col -2 );
-            var seventh = Square.At(locationOfPiece.Row +1 , locationOfPiece.Col -2 );
-            var eighth = Square.At(locationOfPiece.Row +2 , locationOfPiece.Col -1 );
-            
+
+            int[] yCoords = {1, 2, 2, 1, -1, -2, -2, -1};
+            int[] xCoords = {2, 1, -1, -2, -2, -1, 1, 2};
+
+            for (int i = 0; i < 8; i++)
+            {
+                var newRow = locationOfPiece.Row + xCoords[i];
+                var newCol = locationOfPiece.Col + yCoords[i];
+                var knightMove = new Square(newRow, newCol);
+                if (board.OutOfBounds(knightMove) == false)
+                {
+                    squares.Add(knightMove);
+                }
+            }
             squares.RemoveAll(sameColourPiece => (board.GetPiece(sameColourPiece) != null && (board.GetPiece(sameColourPiece).Player == Player)));
             return squares;
         }

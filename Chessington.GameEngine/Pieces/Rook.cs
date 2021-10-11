@@ -27,7 +27,6 @@ namespace Chessington.GameEngine.Pieces
                     squares.Add(Square.At(locationOfPiece.Row,i));
                 }
             }
-
             squares.RemoveAll(sameColourPiece => (board.GetPiece(sameColourPiece) != null && (board.GetPiece(sameColourPiece).Player == Player)));
             return squares;
         }
