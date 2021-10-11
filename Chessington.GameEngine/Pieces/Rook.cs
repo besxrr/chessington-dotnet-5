@@ -29,6 +29,7 @@ namespace Chessington.GameEngine.Pieces
             }
             squares.RemoveAll(sameColourPiece => (board.GetPiece(sameColourPiece) != null && (board.GetPiece(sameColourPiece).Player == Player)));
             return squares;
+            // TODO - Add in the for loops iteration to also check if the piece in front of them isn't occupied . If it is break the if statement.
         }
     }
 }

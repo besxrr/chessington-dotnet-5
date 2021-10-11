@@ -36,7 +36,7 @@ namespace Chessington.GameEngine.Pieces
                 squares.Add(moveOnePositionLeft);
             }
 
-
+            // TODO - Add in outofbounds function.
             return squares;
         }
     }
