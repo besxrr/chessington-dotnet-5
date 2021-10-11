@@ -13,31 +13,91 @@ namespace Chessington.GameEngine.Pieces
             var squares = new List<Square>();
             var locationOfPiece = board.FindPiece(this);
 
-            for (int i = locationOfPiece.Row; i < ; i++)
+
+            if (!board.OutOfBounds(Square.At(locationOfPiece.Row, locationOfPiece.Col + 1)))
             {
-                
+                for (var i = locationOfPiece.Col+1; i < 8; i++)
+                {
+                    var targetSquare = Square.At(locationOfPiece.Row, i);
+                    var targetSquareOnBoard = board.GetPiece(targetSquare);
+                    if (targetSquareOnBoard == null)
+                    {
+                        squares.Add(targetSquare);
+                    }
+                    else
+                    {
+                        if (!targetSquareOnBoard.Player.Equals(currentPlayerColour))
+                        {
+                            squares.Add(targetSquare);
+                        }
+                        break;
+                    }
+                }
             }
-            
-            
-            
-            
-            // for (int i = 0; i < 8; i++)
-            // {
-            //     if (i != locationOfPiece.Row)
-            //     {
-            //         squares.Add(Square.At(i,locationOfPiece.Col));
-            //     }
-            // }
-            // for (int i = 0; i < 8; i++)
-            // {
-            //     if (i != locationOfPiece.Col)
-            //     {
-            //         squares.Add(Square.At(locationOfPiece.Row,i));
-            //     }
-            // }
-            squares.RemoveAll(sameColourPiece => (board.GetPiece(sameColourPiece) != null && (board.GetPiece(sameColourPiece).Player == Player)));
+
+            if (!board.OutOfBounds(Square.At(locationOfPiece.Row, locationOfPiece.Col - 1)))
+            {
+                for (var i = locationOfPiece.Col-1; i < 8; i--)
+                {
+                    var targetSquare = Square.At(locationOfPiece.Row, i);
+                    var targetSquareOnBoard = board.GetPiece(targetSquare);
+                    if (targetSquareOnBoard == null)
+                    {
+                        squares.Add(targetSquare);
+                    }
+                    else
+                    {
+                        if (!targetSquareOnBoard.Player.Equals(currentPlayerColour))
+                        {
+                            squares.Add(targetSquare);
+                        }
+                        break;
+                    }
+                }  
+            }
+
+            if (!board.OutOfBounds(Square.At(locationOfPiece.Row + 1, locationOfPiece.Col)))
+            {
+                for (var i = locationOfPiece.Row + 1; i < 8; i++)
+                {
+                    var targetSquare = Square.At(i, locationOfPiece.Col);
+                    var targetSquareOnBoard = board.GetPiece(targetSquare);
+                    if (targetSquareOnBoard == null)
+                    {
+                        squares.Add(targetSquare);
+                    }
+                    else
+                    {
+                        if (!targetSquareOnBoard.Player.Equals(currentPlayerColour))
+                        {
+                            squares.Add(targetSquare);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            if (!board.OutOfBounds(Square.At(locationOfPiece.Row - 1, locationOfPiece.Col)))
+            {
+                for (var i = locationOfPiece.Row - 1; i < 8; i--)
+                {
+                    var targetSquare = Square.At(i, locationOfPiece.Col);
+                    var targetSquareOnBoard = board.GetPiece(targetSquare);
+                    if (targetSquareOnBoard == null)
+                    {
+                        squares.Add(targetSquare);
+                    }
+                    else
+                    {
+                        if (!targetSquareOnBoard.Player.Equals(currentPlayerColour))
+                        {
+                            squares.Add(targetSquare);
+                        }
+                        break;
+                    }
+                } 
+            }
             return squares;
-            // TODO - Add in the for loops iteration to also check if the piece in front of them isn't occupied . If it is break the if statement.
         }
     }
 }
