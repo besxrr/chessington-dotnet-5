@@ -31,7 +31,7 @@ namespace Chessington.GameEngine.Tests.Pieces
 
             moves.Should().Contain(Square.At(5, 0));
         }
-        
+
         [Test]
         public void WhitePawns_CannotMoveBackwards()
         {
@@ -43,7 +43,7 @@ namespace Chessington.GameEngine.Tests.Pieces
 
             moves.Should().NotContain(Square.At(5, 0));
         }
-        
+
         [Test]
         public void BlackPawns_CannotMoveBackwards()
         {
@@ -55,7 +55,7 @@ namespace Chessington.GameEngine.Tests.Pieces
 
             moves.Should().NotContain(Square.At(3, 0));
         }
-        
+
         [Test]
         public void WhitePawns_WhichHaveNeverMoved_CanMoveTwoSquareUp()
         {
@@ -109,7 +109,7 @@ namespace Chessington.GameEngine.Tests.Pieces
             moves.Should().HaveCount(1);
             moves.Should().Contain(square => square.Equals(Square.At(7, 2)));
         }
-        
+
         [Test]
         public void Pawns_CannotMove_IfThereIsAPieceInFront()
         {
@@ -136,6 +136,23 @@ namespace Chessington.GameEngine.Tests.Pieces
             var moves = pawn.GetAvailableMoves(board);
 
             moves.Should().NotContain(Square.At(3, 3));
+        }
+
+        [Test]
+
+        public void WhitePawn_Can_Take_Diagonally()
+        {
+            var board = new Board();
+            var pawn = new Pawn(Player.White);
+            var right = new Pawn(Player.Black);
+            var left = new Pawn(Player.Black);
+            board.AddPiece(Square.At(3, 5), pawn);
+            board.AddPiece(Square.At(2, 6), left);
+            board.AddPiece(Square.At(4, 6), right);
+            var moves = pawn.GetAvailableMoves(board).ToList();
+            moves.Should().Contain(Square.At(2, 6));
+            moves.Should().Contain(Square.At(4, 6));
+
         }
     }
 }

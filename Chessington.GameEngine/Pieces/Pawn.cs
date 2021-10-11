@@ -37,9 +37,9 @@ namespace Chessington.GameEngine.Pieces
                 }
             }
             
-            if(board.GetPiece(moveDiagonalLeft) != null && !board.GetPiece(moveDiagonalLeft).Player.Equals(currentPlayerColour)){
-                squares.Add(moveDiagonalLeft);
-            }
+            // if(board.GetPiece(moveDiagonalLeft) != null && !board.GetPiece(moveDiagonalLeft).Player.Equals(currentPlayerColour)){
+            //     squares.Add(moveDiagonalLeft);
+            // }
             
             if(board.GetPiece(moveDiagonalRight) != null && !board.GetPiece(moveDiagonalRight).Player.Equals(currentPlayerColour)){
                 squares.Add(moveDiagonalRight);
