@@ -13,6 +13,7 @@ namespace Chessington.GameEngine.Pieces
 
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
+            // 0-7 from top to bottom rows
             var squares = new List<Square>();
             
             var locationOfPiece = board.FindPiece(this);
@@ -34,13 +35,19 @@ namespace Chessington.GameEngine.Pieces
                     squares.Add(moveTwoPosition);
                 }
             }
-            
-            if(board.GetPiece(moveDiagonalLeft) != null && !board.GetPiece(moveDiagonalLeft).Player.Equals(currentPlayerColour)){
-                squares.Add(moveDiagonalLeft);
+
+            if (!board.OutOfBounds(moveDiagonalLeft))
+            {
+                if(board.GetPiece(moveDiagonalLeft) != null && !board.GetPiece(moveDiagonalLeft).Player.Equals(currentPlayerColour)){
+                    squares.Add(moveDiagonalLeft);
+                } 
             }
-            
-            if(board.GetPiece(moveDiagonalRight) != null && !board.GetPiece(moveDiagonalRight).Player.Equals(currentPlayerColour)){
-                squares.Add(moveDiagonalRight);
+
+            if (!board.OutOfBounds(moveDiagonalRight))
+            {
+                if(board.GetPiece(moveDiagonalRight) != null && !board.GetPiece(moveDiagonalRight).Player.Equals(currentPlayerColour)){
+                    squares.Add(moveDiagonalRight);
+                }  
             }
             
             return squares;

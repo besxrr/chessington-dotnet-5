@@ -87,12 +87,12 @@ namespace Chessington.GameEngine
 
         public bool OutOfBounds(Square input)
         {
-            if (input.Row is > 8 or < 1)
+            if (input.Row is > 7 or < 0)
             {
                 return true;
             }
 
-            if (input.Col is > 8 or < 1)
+            if (input.Col is > 7 or < 0)
             {
                 return true;
             }
